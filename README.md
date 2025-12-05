@@ -3,6 +3,38 @@
 ## 1. Introduction
 Construction documents such as drawings, schedules and specifications contain essential information, but retrieving insights manually is slow and inconsistent. This project implements a simplified document intelligence assistant that enables chat-based document lookup and structured extraction, while running entirely offline.
 
+ ┌───────────────────────────┐
+ │        Frontend UI       │ (Next.js)
+ │ - Chat interface          │
+ │ - Schedule viewer         │
+ └───────────────┬───────────┘
+                 │  HTTP JSON API
+                 ▼
+ ┌───────────────────────────┐
+ │       Backend API         │ (FastAPI)
+ │ - /chat endpoint          │
+ │ - /door-schedule endpoint │
+ │ - /room-schedule endpoint │
+ │ - /window-schedule endpoint
+ └───────────────┬───────────┘
+                 │
+                 ▼
+ ┌───────────────────────────┐
+ │  Retrieval + Processing   │
+ │ - Keyword matching        │
+ │ - Chunk ranking           │
+ │ - Evidence selection      │
+ │ - Schedule parsing        │
+ └───────────────┬───────────┘
+                 │
+                 ▼
+ ┌───────────────────────────┐
+ │  Local Data Store         │
+ │ - index_text.json         │
+ │ - Extracted schedules     │
+ └───────────────────────────┘
+
+
 ## 2. Core Capabilities
 ### Chat over Documents
 Users ask natural questions, and the system responds with:
